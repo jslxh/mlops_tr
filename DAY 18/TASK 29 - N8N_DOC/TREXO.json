@@ -1,0 +1,540 @@
+{
+  "name": "TREXO",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 17
+            },
+            {
+              "triggerAtHour": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        336
+      ],
+      "id": "a61825d3-c997-416e-a72f-893cc4e4eb77",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://openai.com/news/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f9ae5a8e-1e5b-4536-a4cf-8df02eacfc78",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "jsCode": "const yesterday = new Date();\nyesterday.setDate(yesterday.getDate() - 1);\n\nreturn items.filter(item => {\n  return new Date(item.json.isoDate) > yesterday;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        0
+      ],
+      "id": "a9e45bd0-b126-45f9-a4be-5b0d96ebd70c",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "url": "https://rsshub.bestblogs.dev/anthropic/news",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        176
+      ],
+      "id": "9ffeab1c-ac32-43b0-be5d-b2b2c3787e97",
+      "name": "RSS Read1"
+    },
+    {
+      "parameters": {
+        "url": "https://huggingface.co/blog/feed.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        336
+      ],
+      "id": "995dea62-2262-4a5b-bf02-3015c5ef3e49",
+      "name": "RSS Read2"
+    },
+    {
+      "parameters": {
+        "url": "https://hnrss.org/frontpage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        512
+      ],
+      "id": "17842bc3-a887-4b43-a2e7-4c4a57178244",
+      "name": "RSS Read3"
+    },
+    {
+      "parameters": {
+        "url": "https://blog.google/technology/ai/rss/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        688
+      ],
+      "id": "e943ae8f-ec87-42df-91b0-d71833a2c491",
+      "name": "RSS Read4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const yesterday = new Date();\nyesterday.setDate(yesterday.getDate() - 1);\n\nreturn items.filter(item => {\n  return new Date(item.json.isoDate) > yesterday;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        176
+      ],
+      "id": "be4f5aa3-4fa8-437a-ac24-91a7f5551e79",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const yesterday = new Date();\nyesterday.setDate(yesterday.getDate() - 1);\n\nreturn items.filter(item => {\n  return new Date(item.json.isoDate) > yesterday;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        336
+      ],
+      "id": "1d416dc9-16ad-4afc-8ca1-b33449a97200",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const yesterday = new Date();\nyesterday.setDate(yesterday.getDate() - 1);\n\nreturn items.filter(item => {\n  return new Date(item.json.isoDate) > yesterday;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        512
+      ],
+      "id": "2a74f1c6-ddc3-47c7-9850-c0cc6b2972fd",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const yesterday = new Date();\nyesterday.setDate(yesterday.getDate() - 1);\n\nreturn items.filter(item => {\n  return new Date(item.json.isoDate) > yesterday;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        688
+      ],
+      "id": "36c5d164-6261-4b8d-88bb-4cc671d16e62",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        976,
+        224
+      ],
+      "id": "e6f142c6-456e-4e4b-9889-cdd8b6bdaabf",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        640,
+        80
+      ],
+      "id": "486dc99b-bc45-4fa4-b918-b160360dd51e",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        624,
+        400
+      ],
+      "id": "fdcc1398-3228-4d24-a3f6-7f5fbc6f62bf",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1152,
+        368
+      ],
+      "id": "cc80b2f3-05de-47d0-85bb-1104a4fb12c4",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze these AI news articles:\n\n{{ $json.news }}\n\nSelect the top 5 most important developments.\n\nFor each provide:\n- Title\n- Summary\n- Why it matters\n- Link\n\nThen provide:\n1. Biggest AI Trend Today\n2. Most Important Research\n3. Recommended Action for AI Engineers",
+        "options": {
+          "systemMessage": "You are TREXO, an AI Industry Intelligence Agent.\n\nGenerate a clean AI newsletter.\n\nUse HTML formatting.\n\nOutput only valid HTML.\n\nFormat:\n\n<h1>🚀 TREXO Daily AI Brief</h1>\n\n<h2>🔥 Top AI News</h2>\n\nFor each news item:\n\n<h3>Title</h3>\n\n<p><b>📌 Summary:</b> ...</p>\n\n<p><b>💡 Why it matters:</b> ...</p>\n\n<p><a href=\"LINK\">🔗 Read More</a></p>\n\n<hr>\n\nAfter the top 5:\n\n<h2>📈 Biggest Trend</h2>\n\n<p>...</p>\n\n<h2>🧠 Important Research</h2>\n\n<p>...</p>\n\n<h2>🎯 Action for AI Engineers</h2>\n\n<p>...</p>\n\nReturn ONLY HTML."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1776,
+        368
+      ],
+      "id": "dd58d0a0-54d4-4346-8478-d58c9bb659b9",
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "jsCode": "const keywords = [\n  \"ai\",\n  \"artificial intelligence\",\n  \"llm\",\n  \"openai\",\n  \"anthropic\",\n  \"gemini\",\n  \"claude\",\n  \"agent\",\n  \"rag\",\n  \"machine learning\"\n];\n\nreturn items.filter(item => {\n  const title = (item.json.title || \"\").toLowerCase();\n\n  return keywords.some(k => title.includes(k));\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        368
+      ],
+      "id": "97cef1b3-f267-40bd-a798-f51953655e7b",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "model": "nvidia/nemotron-3-super-120b-a12b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1776,
+        608
+      ],
+      "id": "43cd1274-c187-4ee5-aa6c-6be30f7728b6",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "XTifbLoy8RBBqb14",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const news = items.map(item => `\nTitle: ${item.json.title}\nLink: ${item.json.link}\nSummary: ${item.json.contentSnippet}\n`).join(\"\\n\\n\");\n\nreturn [{\n  json: {\n    news\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1568,
+        368
+      ],
+      "id": "2e3026f4-ddf6-4f61-a158-2af20bdb720f",
+      "name": "Code in JavaScript6"
+    },
+    {
+      "parameters": {
+        "fromEmail": "mytrexoai@gmail.com",
+        "toEmail": "nezukodvl@gmail.com",
+        "subject": "🚀 TREXO Daily AI Brief",
+        "html": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        2112,
+        368
+      ],
+      "id": "e83b9e91-a40e-460e-9611-eba0a4a8e678",
+      "name": "Send an Email",
+      "webhookId": "e52082f7-c2bc-4f52-b7af-5f3a2d9134a8",
+      "credentials": {
+        "smtp": {
+          "id": "zdbkhK9PZCbzRaj4",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read4": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript6": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "706a315b-a427-4d86-9006-f1da887691d5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47354d99119dc2c304122b8be99504144c18e6deceda7a55b3264d6e0e1442e8"
+  },
+  "nodeGroups": [],
+  "id": "dRl2EBKgEXcbnXtb",
+  "tags": []
+}
